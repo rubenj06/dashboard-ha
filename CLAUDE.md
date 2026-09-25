@@ -89,7 +89,7 @@ Note: `src/lib/Hearth/README.md` links to `docs/architecture.md`, which does not
 
 ## This repository is a fork
 
-`rubenj06/dashboard-ha` is a personal fork of `knowald/ha-hearth` (upstream), which is actively maintained. Every change must keep upstream merges cheap: the fork should always be able to take a new upstream release with few or no conflicts. Some sections above describe upstream's own process (its changelog, release tags, `hearth` commit scope); in this fork they apply only where they do not conflict with the rules below.
+`rubenj06/ha-hearth-rubenj06-fork` is a personal fork of `knowald/ha-hearth` (upstream), which is actively maintained. Every change must keep upstream merges cheap: the fork should always be able to take a new upstream release with few or no conflicts. Some sections above describe upstream's own process (its changelog, release tags, `hearth` commit scope); in this fork they apply only where they do not conflict with the rules below.
 
 ### Keeping upstream mergeable
 
@@ -113,6 +113,6 @@ Resolve conflicts by keeping upstream's version and re-applying the `fork:` edit
 
 ### Home Assistant add-on
 
-`repository.yaml` and `addon/` make this repository a Home Assistant add-on repository (installed on a Proxmox mini-PC, amd64). The Supervisor builds `addon/Dockerfile` on the host with `addon/` as build context, cloning `master` of `rubenj06/dashboard-ha`; there is no prebuilt image. So `master` is what gets deployed and must always build. Work happens on branches and reaches `master` only after the checks pass.
+`repository.yaml` and `addon/` make this repository a Home Assistant add-on repository (installed on a Proxmox mini-PC, amd64). The Supervisor builds `addon/Dockerfile` on the host with `addon/` as build context, cloning `master` of `rubenj06/ha-hearth-rubenj06-fork`; there is no prebuilt image. So `master` is what gets deployed and must always build. Work happens on branches and reaches `master` only after the checks pass.
 
 Home Assistant only offers an update when `version` in `addon/config.yaml` goes up. The format is `<upstream version>.<fork release>`, for example `0.3.0.2`. Bump it and add an entry to `addon/CHANGELOG.md` whenever a change on `master` should reach Home Assistant.

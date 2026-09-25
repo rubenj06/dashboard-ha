@@ -1,13 +1,13 @@
 # Hearth (fork)
 
 Home Assistant add-on die het Hearth-dashboard bouwt uit de fork
-[rubenj06/dashboard-ha](https://github.com/rubenj06/dashboard-ha), inclusief eigen aanpassingen.
+[rubenj06/ha-hearth-rubenj06-fork](https://github.com/rubenj06/ha-hearth-rubenj06-fork), inclusief eigen aanpassingen.
 Gebaseerd op [knowald/addon-ha-hearth](https://github.com/knowald/addon-ha-hearth) (MIT).
 
 ## Installeren
 
 1. Ga in Home Assistant naar **Instellingen → Add-ons → Add-on Store**.
-2. Kies **⋮ → Repositories** en voeg `https://github.com/rubenj06/dashboard-ha` toe.
+2. Kies **⋮ → Repositories** en voeg `https://github.com/rubenj06/ha-hearth-rubenj06-fork` toe.
 3. Installeer **Hearth (fork)** en start de add-on.
 
 Home Assistant bouwt de add-on bij installeren zelf; dat duurt een paar minuten. Hearth verschijnt

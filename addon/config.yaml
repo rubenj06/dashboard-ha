@@ -6,7 +6,7 @@ name: Hearth (fork)
 # rebuilds from the fork's current master
 version: 0.3.0.1
 slug: hearth_fork
-description: Hearth dashboard built from the rubenj06/dashboard-ha fork
+description: Hearth dashboard built from the rubenj06/ha-hearth-rubenj06-fork fork
 arch:
   - aarch64
   - amd64
@@ -14,7 +14,7 @@ arch:
 # disable the docker default system init
 init: false
 
-url: https://github.com/rubenj06/dashboard-ha
+url: https://github.com/rubenj06/ha-hearth-rubenj06-fork
 
 # icon for the menu panel integration
 panel_icon: mdi:fireplace

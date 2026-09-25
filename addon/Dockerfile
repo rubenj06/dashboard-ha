@@ -9,7 +9,7 @@ WORKDIR /app
 # version bump invalidate the cached clone, so an update pulls current master
 ARG BUILD_VERSION
 RUN echo "Building Hearth (fork) ${BUILD_VERSION}" && \
-  git clone --depth 1 --branch master https://github.com/rubenj06/dashboard-ha . && \
+  git clone --depth 1 --branch master https://github.com/rubenj06/ha-hearth-rubenj06-fork . && \
   npm install -g pnpm && \
   pnpm install --frozen-lockfile && \
   pnpm run build && \
