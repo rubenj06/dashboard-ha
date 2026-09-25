@@ -87,6 +87,32 @@ Both registries have compile-time exhaustiveness checks against the union in `ty
 
 Note: `src/lib/Hearth/README.md` links to `docs/architecture.md`, which does not exist. The layer rules above come from `scripts/check-boundaries.mjs`.
 
-## Home Assistant add-on (fork)
+## This repository is a fork
 
-`repository.yaml` and `addon/` make this repository a Home Assistant add-on repository for the fork. The Supervisor builds `addon/Dockerfile` on the host with `addon/` as build context, cloning `master` of `rubenj06/dashboard-ha`; there is no prebuilt image. An update is only offered when `version` in `addon/config.yaml` goes up (`<upstream version>.<fork release>`, e.g. `0.3.0.2`), so bump it and `addon/CHANGELOG.md` when a change on `master` should reach Home Assistant. Keep fork changes additive where possible so upstream merges stay easy.
+`rubenj06/dashboard-ha` is a personal fork of `knowald/ha-hearth` (upstream), which is actively maintained. Every change must keep upstream merges cheap: the fork should always be able to take a new upstream release with few or no conflicts. Some sections above describe upstream's own process (its changelog, release tags, `hearth` commit scope); in this fork they apply only where they do not conflict with the rules below.
+
+### Keeping upstream mergeable
+
+- **Add, don't rewrite.** Put fork features in new files and folders (a new card or widget type in its own `cards/<type>/` and `model/cards/<type>.ts`, a new domain module, a new theme). Touch upstream files only where there is no other way, such as the one-line registrations in `types.ts`, `model/registry.ts`, `cards/index.ts` and `widgets/index.ts`, and keep those edits as small as possible.
+- **Try settings before code.** Purely visual changes often fit in custom CSS (application settings, `--h-*` tokens) or opt-in custom JavaScript, which need no code change at all.
+- **Mark fork edits in upstream files** with a `fork:` comment on or above the changed lines (`// fork: ...`, `<!-- fork: ... -->`, `/* fork: ... */`) so they are easy to find when resolving conflicts.
+- **Never reformat, rename, move or clean up upstream code** as a side effect. Unrelated diffs in upstream files turn into conflicts later.
+- **Leave upstream's own files alone:** `CHANGELOG.md`, `README.md`, `package.json` `version`, `docs/`, `.github/workflows/`, `Dockerfile`. Fork changes are recorded in `addon/CHANGELOG.md` instead.
+- **Keep the upstream checks green.** The tooling above (boundaries, style tokens, a11y, `$lang()` copy, translations in `static/translations/en.json`, bundle budget) also applies to fork code, so upstream code and fork code stay consistent.
+
+### Merging an upstream update
+
+```sh
+git remote add upstream https://github.com/knowald/ha-hearth   # once per clone
+git fetch upstream master
+git checkout -b merge-upstream-<version> master
+git merge upstream/master          # merge, never rebase: master is shared with the add-on build
+```
+
+Resolve conflicts by keeping upstream's version and re-applying the `fork:` edit on top. Then run `pnpm install`, `pnpm check`, `pnpm check:boundaries`, `pnpm check:style`, `pnpm check:hearth-a11y`, `pnpm test`, `pnpm lint` and `pnpm build` before merging into `master`. Afterwards bump the add-on version to the new upstream version with `.1` (for example `0.4.0.1`) and note the upstream release in `addon/CHANGELOG.md`.
+
+### Home Assistant add-on
+
+`repository.yaml` and `addon/` make this repository a Home Assistant add-on repository (installed on a Proxmox mini-PC, amd64). The Supervisor builds `addon/Dockerfile` on the host with `addon/` as build context, cloning `master` of `rubenj06/dashboard-ha`; there is no prebuilt image. So `master` is what gets deployed and must always build. Work happens on branches and reaches `master` only after the checks pass.
+
+Home Assistant only offers an update when `version` in `addon/config.yaml` goes up. The format is `<upstream version>.<fork release>`, for example `0.3.0.2`. Bump it and add an entry to `addon/CHANGELOG.md` whenever a change on `master` should reach Home Assistant.
