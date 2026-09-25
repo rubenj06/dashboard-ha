@@ -1,8 +1,9 @@
 # Home Assistant add-on for this fork. The Supervisor finds it through
-# repository.yaml at the repository root and pulls the image published by
-# .github/workflows/addon-publish.yml; it does not build anything itself.
+# repository.yaml at the repository root and builds addon/Dockerfile on the
+# Home Assistant host; there is no prebuilt image.
 name: Hearth (fork)
-# <upstream Hearth version>.<fork release>; the git tag is addon-<version>
+# <upstream Hearth version>.<fork release>; raising it offers an update that
+# rebuilds from the fork's current master
 version: 0.3.0.1
 slug: hearth_fork
 description: Hearth dashboard built from the rubenj06/dashboard-ha fork
@@ -39,5 +40,3 @@ ports:
 options: {}
 schema:
   hass_public_url: url?
-
-image: ghcr.io/rubenj06/hearth-addon-{arch}

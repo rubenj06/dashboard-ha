@@ -86,3 +86,7 @@ Both registries have compile-time exhaustiveness checks against the union in `ty
 - Versions have no `v` prefix. Releases need explicit confirmation before pushing or publishing (`docs/release.md`).
 
 Note: `src/lib/Hearth/README.md` links to `docs/architecture.md`, which does not exist. The layer rules above come from `scripts/check-boundaries.mjs`.
+
+## Home Assistant add-on (fork)
+
+`repository.yaml` and `addon/` make this repository a Home Assistant add-on repository for the fork. The Supervisor builds `addon/Dockerfile` on the host with `addon/` as build context, cloning `master` of `rubenj06/dashboard-ha`; there is no prebuilt image. An update is only offered when `version` in `addon/config.yaml` goes up (`<upstream version>.<fork release>`, e.g. `0.3.0.2`), so bump it and `addon/CHANGELOG.md` when a change on `master` should reach Home Assistant. Keep fork changes additive where possible so upstream merges stay easy.

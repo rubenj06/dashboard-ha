@@ -7,4 +7,4 @@ configuration:
       Gebruik HTTPS als Hearth via HTTPS wordt geserveerd. Ingress gebruikt
       altijd het eigen Home Assistant-adres en negeert deze instelling.
 network:
-  8099/tcp: "Optioneel. Poort om Hearth direct te openen, zonder Ingress. Bijvoorbeeld: 5050"
+  8099/tcp: 'Optioneel. Poort om Hearth direct te openen, zonder Ingress. Bijvoorbeeld: 5050'

@@ -7,4 +7,4 @@ configuration:
       when Hearth is served over HTTPS. Ingress automatically uses its own
       Home Assistant origin and ignores this setting.
 network:
-  8099/tcp: "Optional. Port to expose externally, bypassing Ingress. Example: 5050"
+  8099/tcp: 'Optional. Port to expose externally, bypassing Ingress. Example: 5050'
